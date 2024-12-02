@@ -33,11 +33,6 @@ class UseDatabase:
         self.cursor.close()
         self.conn.close()
 
-def create_table() -> None:
-    
-
-    return _SQL
-
 @app.route('/')
 def entry_page() -> Response:
     return jsonify({
@@ -133,9 +128,6 @@ def delete() -> Response:
             "deleted": False,
             "error": str(err)
         })
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
