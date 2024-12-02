@@ -43,7 +43,7 @@ pip install -r requirements.txt
 http://127.0.0.1:5000/user [POST, GET, PATCH e DELETE]
 ```
 
-```json
+```bash
 POST & PATCH
 {
     "username": "teste",
@@ -51,12 +51,12 @@ POST & PATCH
 }
 ```
 
-```json
+```bash
 GET
 http://127.0.0.1:5000/user?id=<id_usuario>
 ```
 
-```json
+```bash
 DELETE
 http://127.0.0.1:5000/user/<id>
 ```
