@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:8.0.27
+    container_name: python_database
+    environment:
+      MYSQL_ROOT_PASSWORD: admin # Define a senha do usuário root
+      MYSQL_DATABASE: python_database # Cria o banco de dados python_database
+      MYSQL_USER: python_user # Cria um novo usuário chamado python_user
+      MYSQL_PASSWORD: admin # Define a senha para python_user
+    ports:
+      - "3306:3306"
