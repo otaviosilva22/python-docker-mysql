@@ -8,6 +8,7 @@ Simples exemplo de backend para CRUD desenvolvido com Python e várias outras fe
 - [Docker](https://www.docker.com/)
 - [MySQL](https://www.mysql.com/)
 - [Flask](https://flask.palletsprojects.com/en/stable/)
+- [PyTest](https://docs.pytest.org/en/stable/)
 
 ## 🚀 Como iniciar:
 
@@ -59,6 +60,24 @@ http://127.0.0.1:5000/user?id=<id_usuario>
 ```bash
 DELETE
 http://127.0.0.1:5000/user/<id>
+```
+
+## Como executar pytest:
+
+```bash
+pytest
+```
+
+- Opção com coverage no terminal:
+
+```bash
+pytest --cov=src --cov-report=term
+```
+
+- Opção com coverage gerando arquivo html:
+
+```bash
+pytest --cov=src --cov-report=html
 ```
 
 ## Autor:

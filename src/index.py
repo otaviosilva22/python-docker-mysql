@@ -117,9 +117,6 @@ def delete() -> Response:
     try: 
         with UseDatabase(app.config['dbconfig']) as cursor:
             cursor.execute(_SQL, data)
-            result = cursor.fetchall()
-            json_formated = []
-            
             return jsonify({
                         "deleted": True,
                     })
