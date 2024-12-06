@@ -39,13 +39,13 @@ Instale as dependências:
 pip install -r requirements.txt
 ```
 
-Inicie o projeto
+Inicie o projeto:
 
 ```bash
 python3 src/app.py
 ```
 
-## Como testar:
+## Testes de integração (API):
 
 ```bash
 http://127.0.0.1:5000/user [POST, GET, PATCH e DELETE]
@@ -69,7 +69,7 @@ DELETE
 http://127.0.0.1:5000/user/<id>
 ```
 
-## Como executar pytest:
+## Testes unitários:
 
 ```bash
 pytest
