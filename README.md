@@ -9,6 +9,7 @@ Simples exemplo de backend para CRUD desenvolvido com Python e várias outras fe
 - [MySQL](https://www.mysql.com/)
 - [Flask](https://flask.palletsprojects.com/en/stable/)
 - [PyTest](https://docs.pytest.org/en/stable/)
+- [SQLAlchemy](https://www.sqlalchemy.org/)
 
 ## 🚀 Como iniciar:
 
@@ -36,6 +37,12 @@ Instale as dependências:
 
 ```
 pip install -r requirements.txt
+```
+
+Inicie o projeto
+
+```bash
+python3 src/app.py
 ```
 
 ## Como testar:
