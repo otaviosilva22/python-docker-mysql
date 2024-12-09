@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, Response
 from flask_sqlalchemy import SQLAlchemy
+from prometheus_client import CollectorRegistry, Gauge, push_to_gateway
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
@@ -9,6 +10,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://python_user:admin@127.0
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+registry = CollectorRegistry()
+
+user_metric_success = Gauge('user_metric_success', 'Quantidade de usuários', registry=registry)
+user_metric_success.set(0)
+
+user_metric_error = Gauge('user_metric_error', 'Erros ao cadastrar usuário', registry=registry)
+user_metric_error.set(0)
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -35,15 +44,31 @@ def create() -> Response:
     username = request_body.get('username')
     email = request_body.get('email')
     
+    if not username or not email:
+        
+        user_metric_error.inc()
+        push_to_gateway('localhost:9091', 'job=user_metric_error', registry=registry)
+        return jsonify({
+            'created': False,
+            'error': 'Invalid params'
+        }), 400
+
+
     try:
         new_user = User(username=username, email=email)
         db.session.add(new_user)
         db.session.commit()
+
+        user_metric_success.inc()
+        push_to_gateway('localhost:9091', 'job=user_metric_success', registry=registry)
+
         return jsonify({
             'created': True,
             'user': new_user.to_json()
         }), 201
     except Exception as err:
+        user_metric_error.inc()
+        push_to_gateway('localhost:9091', 'job=user_metric_error', registry=registry)
         print("Erro ao inserir dados: {err}")
         return jsonify({
             'created': False,

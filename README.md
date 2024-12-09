@@ -10,8 +10,9 @@ Simples exemplo de backend para CRUD desenvolvido com Python e várias outras fe
 - [Flask](https://flask.palletsprojects.com/en/stable/)
 - [PyTest](https://docs.pytest.org/en/stable/)
 - [SQLAlchemy](https://www.sqlalchemy.org/)
+- [Prometheus](https://prometheus.io/)
 
-## 🚀 Como iniciar:
+## 🚀 Como iniciar
 
 Crie o ambiente virtual:
 
@@ -33,15 +34,11 @@ Inicie o ambiente virtual:
 source venv/bin/activate
 ```
 
-Instale as dependências:
-
-```
-pip install -r requirements.txt
-```
-
-Inicie o projeto:
+Instale as dependências, inicie o docker e o projeto:
 
 ```bash
+pip install -r requirements.txt
+docker-compose up
 python3 src/app.py
 ```
 
@@ -51,21 +48,24 @@ python3 src/app.py
 http://127.0.0.1:5000/user [POST, GET, PATCH e DELETE]
 ```
 
-```bash
-POST & PATCH
+- Body request (POST E PATCH):
+
+```json
 {
-    "username": "teste",
-    "email": "email@mail.com"
+  "username": "teste",
+  "email": "email@mail.com"
 }
 ```
 
+- URL param (GET):
+
 ```bash
-GET
 http://127.0.0.1:5000/user?id=<id_usuario>
 ```
 
+- PATH param (DELETE):
+
 ```bash
-DELETE
 http://127.0.0.1:5000/user/<id>
 ```
 
@@ -75,7 +75,7 @@ http://127.0.0.1:5000/user/<id>
 pytest
 ```
 
-- Opção com coverage no terminal:
+- Opção com coverage (métrica de cobertura de testes) no terminal:
 
 ```bash
 pytest --cov=src --cov-report=term
@@ -85,6 +85,18 @@ pytest --cov=src --cov-report=term
 
 ```bash
 pytest --cov=src --cov-report=html
+```
+
+## Métricas do Prometheus:
+
+```bash
+https://localhost:9090
+```
+
+- Acesso ao histórico de métricas do Pushgateway:
+
+```bash
+https://localhost:9091/metrics
 ```
 
 ## Autor:
